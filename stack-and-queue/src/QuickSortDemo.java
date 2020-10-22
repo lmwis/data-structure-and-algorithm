@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 /**
- * @Description:
+ * @Description: 快速排序
  * @Author: lmwis
  * @Date 2020-09-27 19:15
  * @Version 1.0

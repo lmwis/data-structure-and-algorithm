@@ -1,7 +1,9 @@
+package string;
+
 import java.util.Stack;
 
 /**
- * @Description:
+ * @Description: 比较含退格的字符串
  * @Author: lmwis
  * @Date 2020-10-19 20:05
  * @Version 1.0
