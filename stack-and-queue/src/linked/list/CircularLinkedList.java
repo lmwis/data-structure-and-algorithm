@@ -14,7 +14,7 @@ public class CircularLinkedList {
         CircularLinkedList circularLinkedList = new CircularLinkedList();
         LinkedList linkedList = new LinkedList();
         ListNode listNode = circularLinkedList.detectCycle(linkedList.root);
-        System.out.println(listNode.value);
+        System.out.println(listNode.val);
     }
 
     public ListNode detectCycle(ListNode head) {
