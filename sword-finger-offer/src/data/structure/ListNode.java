@@ -18,4 +18,12 @@ public class ListNode{
     public ListNode getNext() {
         return next;
     }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public void setNext(ListNode next) {
+        this.next = next;
+    }
 }
