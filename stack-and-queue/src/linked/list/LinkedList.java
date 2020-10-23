@@ -7,7 +7,10 @@ package linked.list;
  * @Version 1.0
  */
 public class LinkedList {
-    ListNode root;
+    public static void main(String[] args) {
+        LinkedList linkedList = new LinkedList(new int[]{});
+        System.out.println(linkedList);
+    }
 
     public LinkedList() {
 //        this.root = new ListNode(3);
@@ -28,6 +31,19 @@ public class LinkedList {
 //        node1.next=node2;
 //        node2.next=null;
         this.root = node1;
+    }
+    ListNode root = null;
+    public LinkedList(int[] arr) {
+        if (arr!=null && arr.length!=0){
+            root = new ListNode(0,null);
+            ListNode temp = root;
+            for (int i = 0; i < arr.length;i++){
+                assert temp != null;
+                temp.val = arr[i];
+                temp.next = i==arr.length-1?null:new ListNode(0,null);
+                temp = temp.next;
+            }
+        }
     }
 }
 
