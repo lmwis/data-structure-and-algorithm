@@ -4,6 +4,7 @@ import java.util.List;
 
 /**
  * @Description: 判断链表是否回文
+ * Thinking: 抓住题目的本质，比如什么才是回文，然后贯通思考，链表回文就得反向查找，链表一定程度上=线性表
  * @Author: lmwis
  * @Date 2020-10-23 10:47
  * @Version 1.0
