@@ -1,7 +1,7 @@
 package linked.list;
 
 /**
- * @Description:
+ * @Description: 链表
  * @Author: lmwis
  * @Date 2020-10-11 14:09
  * @Version 1.0
