@@ -41,6 +41,10 @@ public class VolatileDemo {
         System.out.println(count.atomicInteger);
     }
 
+    /**
+     * 可见性demo
+     * 一个线程对共享变量的改变会通知到另外一个线程
+     */
     private static void demoForSeeAble() {
         Count count = new Count();
         new Thread(() ->{
