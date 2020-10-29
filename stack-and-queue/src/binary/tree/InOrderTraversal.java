@@ -31,7 +31,7 @@ public class InOrderTraversal {
                 temp = temp.left;
             }else { // 当没有左子树的时候加入结果
                 temp = stack.pop();
-                res.add(temp.value);
+                res.add(temp.val);
                 temp = temp.right;
             }
         }

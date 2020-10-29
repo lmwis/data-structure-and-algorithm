@@ -34,7 +34,7 @@ public class BinarySearchTreeInsert {
         TreeNode cur = root;
         while (true) {
             // 目标值小于则该放在左子树上
-            if (value < cur.value) {
+            if (value < cur.val) {
                 // 左子树为空则为插入位置
                 if (cur.left == null) {
                     cur.left = node;

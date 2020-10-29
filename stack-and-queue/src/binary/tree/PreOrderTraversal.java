@@ -38,7 +38,7 @@ public class PreOrderTraversal {
         while (temp!=null || !stack.empty()){
 
             if(temp!=null){
-                res.add(temp.value);
+                res.add(temp.val);
                 stack.push(temp);
                 temp = temp.left;
             }else{ // 左子树为空

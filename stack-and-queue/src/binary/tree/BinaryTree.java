@@ -31,16 +31,16 @@ public class BinaryTree {
 }
 
 class TreeNode {
-    int value;
+    int val;
     TreeNode left;
     TreeNode right;
 
-    TreeNode(int value){
-        this.value = value;
+    TreeNode(int val){
+        this.val = val;
     }
 
-    TreeNode(int value, TreeNode left, TreeNode right){
-        this.value = value;
+    TreeNode(int val, TreeNode left, TreeNode right){
+        this.val = val;
         this.left = left;
         this.right = right;
     }

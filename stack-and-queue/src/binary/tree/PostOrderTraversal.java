@@ -30,7 +30,7 @@ public class PostOrderTraversal {
         TreeNode temp = root;
         while (temp!=null || !stack.empty()){
             if(temp!=null){
-                res.add(temp.value);
+                res.add(temp.val);
                 stack.push(temp);
                 // 先遍历左子树改为右子树
                 temp = temp.right;
