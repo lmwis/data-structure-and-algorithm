@@ -26,6 +26,12 @@ public class DeepFirstSearch {
         BinaryTree binaryTree = new BinaryTree();
         System.out.println(deepFirstSearch.sumNumbers(binaryTree.getRoot()));
     }
+
+    /**
+     * DFS，深度优先遍历
+     * @param root
+     * @return
+     */
     public int sumNumbers(TreeNode root) {
         return dep(root,0);
     }
