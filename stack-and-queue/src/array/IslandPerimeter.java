@@ -60,6 +60,11 @@ public class IslandPerimeter {
         return sum;
     }
 
+    /**
+     * 使用DFS遍历(性能还不如全遍历？)
+     * @param grid
+     * @return
+     */
     int islandPerimeterDFS(int[][] grid){
         // 找入口
         for(int i=0;i<grid.length;i++) {
