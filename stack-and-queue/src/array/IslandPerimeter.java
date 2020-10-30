@@ -18,7 +18,8 @@ package array;
 public class IslandPerimeter {
     public static void main(String[] args) {
         IslandPerimeter islandPerimeter = new IslandPerimeter();
-        int sum = islandPerimeter.islandPerimeter(new int[][]{{0, 1, 0, 0}, {1, 1, 1, 0}, {0, 1, 0, 0}, {1, 1, 0, 0}});
+//        int sum = islandPerimeter.islandPerimeter(new int[][]{{0, 1, 0, 0}, {1, 1, 1, 0}, {0, 1, 0, 0}, {1, 1, 0, 0}});
+        int sum = islandPerimeter.islandPerimeterDFS(new int[][]{{0, 1, 0, 0}, {1, 1, 1, 0}, {0, 1, 0, 0}, {1, 1, 0, 0}});
         System.out.println(sum);
     }
 
@@ -27,7 +28,7 @@ public class IslandPerimeter {
      * @param grid
      * @return
      */
-    public int islandPerimeter(int[][] grid) {
+    int islandPerimeter(int[][] grid) {
         int sum=0;
         for(int i=0;i<grid.length;i++){
             for(int j=0;j<grid[i].length;j++){
@@ -57,5 +58,39 @@ public class IslandPerimeter {
             }
         }
         return sum;
+    }
+
+    int islandPerimeterDFS(int[][] grid){
+        // 找入口
+        for(int i=0;i<grid.length;i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                if (grid[i][j] == 1) {
+                    return dfs(grid, i, j);
+                }
+            }
+        }
+        return 0;
+    }
+
+    int dfs(int[][] grid,int i,int j){
+
+        // 和边界相邻
+        if(i<0 || j<0 || i>=grid.length||j>=grid[0].length){
+            return 1;
+        }
+        // 和水域相邻
+        if(grid[i][j]==0){
+            return 1;
+        }
+        // 和遍历过的岛屿相邻
+        if(grid[i][j]!=1){
+            return 0;
+        }
+        // 遍历到当前岛屿，赋值为2，防止再次遍历
+        grid[i][j]=2;
+        return dfs(grid,i+1,j)
+                +dfs(grid,i-1,j)
+                +dfs(grid,i,j+1)
+                +dfs(grid,i,j-1);
     }
 }
