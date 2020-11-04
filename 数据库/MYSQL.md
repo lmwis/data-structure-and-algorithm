@@ -165,3 +165,89 @@ and 并列和顺序无关，不影响索引使用。
 ## 索引排序总结
 - MYSQL两种排序方式：usingfilesort和usingindex
 - MYSQL能为排序与查询使用相同的索引
+## 调优步骤
+![bf8c0509d982623ed35c30d8b7b32fcd.png](en-resource://database/2166:1)
+#### 慢查询
+查看是否开启慢查询
+```mysql
+show variables like '%slow_query_log%';
+```
+开启慢查询
+```mysql
+set global slow_query_log=1;
+```
+慢查询时间
+**long_query_time**，默认为10秒
+```mysql
+show variables like 'long_query_time%'
+```
+可以使用命令行修改，也可以在my.cnf修改
+## MYSQL函数
+批量向数据库插入测试数据
+```mysql
+DELIMITER $$ // 使sql结束符号变成两个$
+CREATE FUNCTION rand_string(n INT) RETURNS VARCHAR(255)
+
+BEGIN
+
+RETURN xxx
+
+END $$
+```
+## SQL诊断
+开启profiles记录sql
+```mysql
+show variables like 'profiling' // 查看是否开启
+set profiling=on
+```
+查看 profiles
+```mysql
+show profiles
+```
+![96dc900de46ffc85c6c61c28c532f7cd.png](en-resource://database/2168:0)
+
+查看具体sql生命周期耗时
+```mysql
+show profiles cpu,block io for query id
+```
+其他参数
+![4907bb84722339561a201d7c690eeea4.png](en-resource://database/2170:0)
+#### 何时需要优化
+出现以下四种情况
+![b5028c694f8681b91d181bb302b5d2bc.png](en-resource://database/2172:0)
+#### 全局查询日志
+**只可测试环境用，不可生产环境用**
+会将所有的sql查询记录到mysql.general_log表中
+开启
+```mysql
+set global general_log=1;
+set global log_output='TABLE';
+```
+# 锁
+- 读锁（共享锁），写锁（排它锁）
+- 行锁，表锁
+**读锁会阻塞别人的写，但不会阻塞读，写锁会把别人的读和写都阻塞**
+#### 读锁（共享锁）
+读写锁偏向于Myisam，锁粒度大，并发度最低
+```mysql
+lock table table_name read
+```
+解锁
+```mysql
+unlock tables // 解锁
+```
+##### 规则
+- 1.谁加锁谁就只能读该表，而不能写（修改和插入）
+- 2.其他人也可以读该表，但执行写入会进入阻塞，当加锁用户解锁后立即执行写操作
+#### 写锁（排他锁）
+```mysql
+lock table table_name write
+```
+##### 规则
+- 1.加锁方只可以读和写该表，不能操作其他表
+- 2.其他人不能执行的所有操作都会被阻塞，释放后立即执行
+#### 读写锁结论
+Myisam的读写锁调度时写优先，这也是myisam不适合做写为主表的引擎
+#### 行锁
+偏向于InnoDB，开销大，加锁慢，会出现死锁，发送锁冲突的概率最低，并发度最高
+- myisam和innnodb最大区别就是**支持事务且采用了行级锁**
