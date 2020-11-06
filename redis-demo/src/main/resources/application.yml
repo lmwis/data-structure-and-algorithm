@@ -1,0 +1,7 @@
+server:
+  port: 8090
+spring:
+  redis:
+    host: 47.93.200.138
+    password: 33zyfT6yjXBMVhQ4N3N9
+    database: 2

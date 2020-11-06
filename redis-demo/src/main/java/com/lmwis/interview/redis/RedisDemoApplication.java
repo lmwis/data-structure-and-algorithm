@@ -1,7 +1,9 @@
 package com.lmwis.interview.redis;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.redis.core.RedisTemplate;
 
 /**
  * @Description:
@@ -11,7 +13,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class RedisDemoApplication {
+
+    @Autowired
+    RedisTemplate redisTemplate;
+
     public static void main(String[] args) {
+
         SpringApplication.run(RedisDemoApplication.class,args);
     }
+
+
 }
