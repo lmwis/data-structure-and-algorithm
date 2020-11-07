@@ -25,7 +25,6 @@ public class CountSmaller {
                 }
             }
         }
-
         return res;
     }
 }
