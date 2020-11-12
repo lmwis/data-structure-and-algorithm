@@ -1,9 +1,9 @@
 package exp5;
 
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Description:
@@ -13,25 +13,158 @@ import java.sql.SQLException;
  */
 public class JDBCExp {
     private static final String host = "47.92.194.26";
+    private static final String port = "6002";
+    private static final String user = "root";
     private static final String password = "123456";
     private static Connection connection;
 
     static {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/imooc", "root", "root");
+            connection = DriverManager.getConnection("jdbc:mysql://"+host+":"+port+"/student?characterEncoding=utf-8", user, password);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
 
-    // 增加
-    public boolean insert(){
-        return true;
+    public static void main(String[] args) {
+        JDBCExp jdbcExp = new JDBCExp();
+        Student stu1 = new Student("1","张A");
+        Student stu2 = new Student("2","张B");
+        Student stu3 = new Student("3","张C");
+        Student stu4 = new Student("4","张D");
+        try {
+            // 插入
+            System.out.println("插入数据");
+            jdbcExp.insert(stu1);
+            jdbcExp.insert(stu2);
+            jdbcExp.insert(stu3);
+            jdbcExp.insert(stu4);
+            jdbcExp.showAllData();
+            // 删除
+            System.out.println("删除数据");
+            jdbcExp.delete(2);
+            jdbcExp.showAllData();
+            // 修改
+            System.out.println("修改数据");
+            jdbcExp.update(new Student("3","刘C"));
+            jdbcExp.showAllData();
+            // 查询
+            System.out.println("查询数据");
+            Student student = jdbcExp.selectById(1);
+            System.out.println(student);
+            ArrayList ids = new ArrayList(){{
+                add(3);
+                add(4);
+            }};
+            List<Student> list = jdbcExp.selectByIds(ids);
+            list.forEach(System.out::println);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void showAllData() throws SQLException {
+        System.out.println("当前数据库中数据：");
+        System.out.println("==============");
+        String sql = "select * from student_info";
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
+        while(resultSet.next()){
+            System.out.println(new Student(resultSet.getString("id"),resultSet.getString("name")));
+        }
+        System.out.println("==============");
+    }
+    /**
+     * 增加
+     * @return
+     */
+    public boolean insert(Student student) throws SQLException {
+        //3.操作数据库，实现增删改查
+        String sql = "insert into student_info values(?,?)";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setString(1,student.id);
+        ps.setString(2,student.name);
+        return ps.execute();
     }
 
-    // 删除
-    public boolean delete() {
-        return true;
+    /**
+     * 删除
+     * @return
+     */
+    public boolean delete(int id) throws SQLException {
+        String sql = "delete from student_info where id='"+id+"'";
+        Statement statement = connection.createStatement();
+        return statement.execute(sql);
+    }
+
+    /**
+     * 修改
+     * @param student 学生
+     * @return fail or success
+     */
+    public boolean update(Student student) throws SQLException {
+        String sql = "update student_info set name='"+student.name+"' where id='"+student.id+"'";
+        Statement statement = connection.createStatement();
+        return statement.execute(sql);
+    }
+
+    /**
+     * 根据id查询学生
+     * @param id id
+     * @return student
+     */
+    public Student selectById(int id) throws SQLException {
+        String sql = "select * from student_info where id='"+id+"'";
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
+        while(resultSet.next()){
+            return new Student(resultSet.getString("id"),resultSet.getString("name"));
+        }
+        return null;
+    }
+
+    /**
+     * 根据多个id查询
+     * @param ids ids
+     * @return 学生集合
+     */
+    public List<Student> selectByIds(List<Integer> ids) throws SQLException {
+        if(ids==null || ids.size()==0){
+            return null;
+        }
+        List<Student> students = new ArrayList<>();
+        Statement statement = connection.createStatement();
+        ids.forEach(k->{
+            try {
+                String sql = "select * from student_info where id='"+k+"'";
+                ResultSet resultSet = null;
+                resultSet = statement.executeQuery(sql);
+                while(resultSet.next()){
+                    students.add(new Student(resultSet.getString("id"),resultSet.getString("name")));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+        return students ;
+    }
+}
+class Student{
+    // 学号
+    String id;
+    // 姓名
+    String name;
+
+    public Student(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
