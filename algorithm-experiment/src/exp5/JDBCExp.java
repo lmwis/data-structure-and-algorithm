@@ -22,6 +22,9 @@ public class JDBCExp {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://"+host+":"+port+"/student?characterEncoding=utf-8", user, password);
+            // 先清空数据库
+            Statement statement = connection.createStatement();
+            statement.execute("delete from student_info");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
