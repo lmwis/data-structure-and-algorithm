@@ -32,10 +32,10 @@ public class JDBCExp {
 
     public static void main(String[] args) {
         JDBCExp jdbcExp = new JDBCExp();
-        Student stu1 = new Student("1","张A");
-        Student stu2 = new Student("2","张B");
-        Student stu3 = new Student("3","张C");
-        Student stu4 = new Student("4","张D");
+        Student stu1 = new Student("1","张A","男");
+        Student stu2 = new Student("2","张B","男");
+        Student stu3 = new Student("3","张C","女");
+        Student stu4 = new Student("4","张D","女");
         try {
             // 插入
             System.out.println("插入数据");
@@ -50,7 +50,7 @@ public class JDBCExp {
             jdbcExp.showAllData();
             // 修改
             System.out.println("修改数据");
-            jdbcExp.update(new Student("3","刘C"));
+            jdbcExp.update(new Student("3","刘C","男"));
             jdbcExp.showAllData();
             // 查询
             System.out.println("查询数据");
@@ -73,7 +73,9 @@ public class JDBCExp {
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
         while(resultSet.next()){
-            System.out.println(new Student(resultSet.getString("id"),resultSet.getString("name")));
+            System.out.println(new Student(resultSet.getString("id")
+                    ,resultSet.getString("name")
+                    ,resultSet.getString("gender")));
         }
         System.out.println("==============");
     }
@@ -83,10 +85,11 @@ public class JDBCExp {
      */
     public boolean insert(Student student) throws SQLException {
         //3.操作数据库，实现增删改查
-        String sql = "insert into student_info values(?,?)";
+        String sql = "insert into student_info values(?,?,?)";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1,student.id);
         ps.setString(2,student.name);
+        ps.setString(3,student.gender);
         return ps.execute();
     }
 
@@ -121,7 +124,9 @@ public class JDBCExp {
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
         while(resultSet.next()){
-            return new Student(resultSet.getString("id"),resultSet.getString("name"));
+            return new Student(resultSet.getString("id")
+                    ,resultSet.getString("name")
+                    ,resultSet.getString("gender"));
         }
         return null;
     }
@@ -143,7 +148,9 @@ public class JDBCExp {
                 ResultSet resultSet = null;
                 resultSet = statement.executeQuery(sql);
                 while(resultSet.next()){
-                    students.add(new Student(resultSet.getString("id"),resultSet.getString("name")));
+                    students.add(new Student(resultSet.getString("id")
+                            ,resultSet.getString("name")
+                            ,resultSet.getString("gender")));
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -157,10 +164,13 @@ class Student{
     String id;
     // 姓名
     String name;
+    // 性别
+    String gender;
 
-    public Student(String id, String name) {
+    public Student(String id, String name, String gender) {
         this.id = id;
         this.name = name;
+        this.gender = gender;
     }
 
     @Override
@@ -168,6 +178,7 @@ class Student{
         return "Student{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
+                ", gender='" + gender + '\'' +
                 '}';
     }
 }
