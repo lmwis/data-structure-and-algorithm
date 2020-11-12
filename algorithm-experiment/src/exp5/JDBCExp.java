@@ -16,7 +16,7 @@ public class JDBCExp {
     private static final String host = "47.92.194.26";
     private static final String port = "6002";
     private static final String user = "root";
-    private static final String password = "12346";
+    private static final String password = "123456";
     private static Connection connection;
 
     public JDBCExp() throws ClassNotFoundException, SQLException {
