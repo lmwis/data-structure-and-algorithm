@@ -50,7 +50,7 @@ class StudentSystem extends JFrame{
         panel.add(sexLabel);
 
         //性别选择
-        JComboBox<String> sexBox = new JComboBox<String>();
+        JComboBox<String> sexBox = new JComboBox<>();
         sexBox.addItem("男");
         sexBox.addItem("女");
         sexBox.setBounds(145,140,80,30);
