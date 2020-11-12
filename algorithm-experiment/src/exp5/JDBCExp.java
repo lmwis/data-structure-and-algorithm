@@ -12,25 +12,22 @@ import java.util.List;
  * @Version 1.0
  */
 public class JDBCExp {
+    private StudentSystem studentSystem;
     private static final String host = "47.92.194.26";
     private static final String port = "6002";
     private static final String user = "root";
-    private static final String password = "123456";
+    private static final String password = "12346";
     private static Connection connection;
 
-    static {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://"+host+":"+port+"/student?characterEncoding=utf-8", user, password);
-            // 先清空数据库
-            Statement statement = connection.createStatement();
-            statement.execute("delete from student_info");
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
+    public JDBCExp() throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.jdbc.Driver");
+        connection = DriverManager.getConnection("jdbc:mysql://"+host+":"+port+"/student?characterEncoding=utf-8", user, password);
+        // 先清空数据库
+        Statement statement = connection.createStatement();
+        statement.execute("delete from student_info");
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
         JDBCExp jdbcExp = new JDBCExp();
         Student stu1 = new Student("1","张A","男");
         Student stu2 = new Student("2","张B","男");

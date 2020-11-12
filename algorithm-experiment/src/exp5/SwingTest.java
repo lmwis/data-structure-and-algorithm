@@ -62,8 +62,15 @@ class StudentSystem extends JFrame {
         JButton addButton = new JButton("添加");
         addButton.setBounds(100, 200, 80, 30);
         addButton.setFont(new Font("微软雅黑", Font.BOLD, 16));
-        JDBCExp jdbcExp = new JDBCExp();
         addButton.addActionListener(e -> {
+            JDBCExp jdbcExp = null;
+            try {
+                jdbcExp = new JDBCExp();
+            } catch (Exception ex){
+                JOptionPane.showMessageDialog(this.getContentPane(),
+                        "请检查数据库连接", "系统提示", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             String id = stunoText.getText();
             String name = nameText.getText();
             String gender = sexBox.getItemAt(sexBox.getSelectedIndex());
