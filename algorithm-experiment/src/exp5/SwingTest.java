@@ -19,6 +19,7 @@ public class SwingTest {
 
 class StudentSystem extends JFrame {
     JPanel panel;
+    JDBCExp jdbcExp = null;
 
     public StudentSystem(String title) {
         super(title);
@@ -63,9 +64,10 @@ class StudentSystem extends JFrame {
         addButton.setBounds(100, 200, 80, 30);
         addButton.setFont(new Font("微软雅黑", Font.BOLD, 16));
         addButton.addActionListener(e -> {
-            JDBCExp jdbcExp = null;
             try {
-                jdbcExp = new JDBCExp();
+                if(jdbcExp==null){
+                    jdbcExp = new JDBCExp();
+                }
             } catch (Exception ex){
                 JOptionPane.showMessageDialog(this.getContentPane(),
                         "请检查数据库连接", "系统提示", JOptionPane.ERROR_MESSAGE);
