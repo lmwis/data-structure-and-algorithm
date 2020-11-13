@@ -12,7 +12,6 @@ import java.util.List;
  * @Version 1.0
  */
 public class JDBCExp {
-    private StudentSystem studentSystem;
     private static final String host = "47.92.194.26";
     private static final String port = "6002";
     private static final String user = "root";
