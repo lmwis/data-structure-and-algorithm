@@ -1,4 +1,4 @@
-package volatiledemo;
+package concurrent.volatiledemo;
 
 import java.util.ArrayList;
 import java.util.List;

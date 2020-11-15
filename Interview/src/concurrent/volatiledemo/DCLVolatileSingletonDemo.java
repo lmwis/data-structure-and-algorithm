@@ -1,4 +1,4 @@
-package volatiledemo;
+package concurrent.volatiledemo;
 
 /**
  * @Description: DCL + volatile 单例模式优化
