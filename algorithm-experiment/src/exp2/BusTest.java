@@ -3,16 +3,15 @@ package exp2;
 public class BusTest {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Driver driver=new Driver("张三","男",35,"d001");
-		Passengers pass1=new Passengers("罗佳利",17,"美少女");
-		Passengers pass2=new Passengers("向东平",20,"男");
-		Passengers pass3=new Passengers("肖嘉庆",20,"男");
-		Passengers pass4=new Passengers("小红",18,"女");
+		Passengers pass1=new Passengers("罗佳利",20,"女");
+		Passengers pass2=new Passengers("小B",20,"男");
+		Passengers pass3=new Passengers("小C",20,"男");
+		Passengers pass4=new Passengers("小D",18,"女");
 
-		Bus bus= new Bus("陕8888Z","比亚迪", 50);
+		Bus bus= new Bus("陕6666Z","大众", 50);
 		bus.setDriver(driver);
-		bus.setNum("336");
+		bus.setNum("701");
 
 		bus.upOnePass(pass1);
 		bus.upOnePass(pass2);
