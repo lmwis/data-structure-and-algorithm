@@ -24,12 +24,12 @@ public class OrderGenerator {
     public static String generateOrderId(String count){
         StringBuffer stringBuffer = new StringBuffer("D");
         Calendar instance = Calendar.getInstance();
-        stringBuffer.append(instance.get(Calendar.YEAR));
-        stringBuffer.append(instance.get(Calendar.MONTH)+1);
-        stringBuffer.append(instance.get(Calendar.DAY_OF_MONTH));
+//        stringBuffer.append(instance.get(Calendar.YEAR));
+//        stringBuffer.append(instance.get(Calendar.MONTH)+1);
+//        stringBuffer.append(instance.get(Calendar.DAY_OF_MONTH));
         stringBuffer.append(instance.get(Calendar.HOUR_OF_DAY));
-        stringBuffer.append(instance.get(Calendar.MINUTE));
-        stringBuffer.append(instance.get(Calendar.SECOND));
+//        stringBuffer.append(instance.get(Calendar.MINUTE));
+//        stringBuffer.append(instance.get(Calendar.SECOND));
         stringBuffer.append(count);
         return stringBuffer.toString();
     }
