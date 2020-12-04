@@ -30,12 +30,12 @@ public class LengthOfLongestSubstring {
     public static int lengthOfLongestSubstring(String s) {
         int left = -1;
         int right = 0;
-        int res=1;
+        int res=0;
         Map<Character,Integer> hashMap = new HashMap<>();
         for(;right<s.length();right++){
             char c = s.charAt(right);
             if(hashMap.containsKey(c)){
-                left = hashMap.get(c);
+                left = Math.max(left,hashMap.get(c));
             }
             hashMap.put(c,right);
             res = Math.max(res,right-left);
