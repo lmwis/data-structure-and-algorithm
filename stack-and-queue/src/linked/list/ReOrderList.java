@@ -50,4 +50,42 @@ public class ReOrderList {
         node.next=null;
 
     }
+
+    /**
+     * O(1)最优法
+     *  取链表中点，截取，反转
+     * @param head
+     */
+    public void reorderListBest(ListNode head) {
+        if(head==null){
+            return;
+        }
+        ListNode root = head;
+        // 找中点
+        ListNode fast = head;
+        ListNode slow = head;
+        while(fast!=null&&fast.next!=null){
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        // 反转链表
+        ListNode pre = null;
+        ListNode current = slow;
+        while(current!=null){
+            ListNode temp = current.next;
+            current.next = pre;
+            pre = current;
+            current = temp;
+        }
+        ListNode node = head;
+        while(node.next!=null&&pre.next!=null){
+            ListNode temp = node.next;
+            ListNode temp1 = pre.next;
+            node.next = pre;
+            pre.next = temp;
+
+            node = temp;
+            pre = temp1;
+        }
+    }
 }
