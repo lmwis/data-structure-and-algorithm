@@ -60,7 +60,6 @@ public class ReOrderList {
         if(head==null){
             return;
         }
-        ListNode root = head;
         // 找中点
         ListNode fast = head;
         ListNode slow = head;
