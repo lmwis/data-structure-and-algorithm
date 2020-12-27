@@ -18,6 +18,7 @@ public class JDBCExp {
     private static final String password = "123456";
     private static Connection connection;
 
+
     public JDBCExp() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
         connection = DriverManager.getConnection("jdbc:mysql://"+host+":"+port+"/student?characterEncoding=utf-8", user, password);
