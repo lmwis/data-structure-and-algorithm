@@ -82,7 +82,6 @@ public class ReOrderList {
             ListNode temp1 = pre.next;
             node.next = pre;
             pre.next = temp;
-
             node = temp;
             pre = temp1;
         }
