@@ -19,6 +19,7 @@ import java.util.List;
  * 输入：A = [2,7,4], K = 181
  * 输出：[4,5,5]
  * 解释：274 + 181 = 455
+ * 我直接爬
  * @Author: lmwis
  * @Date 2021-01-22 23:26
  * @Version 1.0
