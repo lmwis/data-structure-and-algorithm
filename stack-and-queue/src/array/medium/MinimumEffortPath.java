@@ -20,6 +20,7 @@ public class MinimumEffortPath {
             public int compare(int[] edge1, int[] edge2) {
                 return edge1[2] - edge2[2];
             }
+
         });
         pq.offer(new int[]{0, 0, 0});
 
