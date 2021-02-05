@@ -16,6 +16,7 @@ package array.easy;
  * @Version 1.0
  */
 public class FindMaxAverage {
+
     /**
      * 滑动窗口
      * @param nums
