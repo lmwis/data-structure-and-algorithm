@@ -19,6 +19,7 @@ package array.easy;
  * @Version 1.0
  */
 public class Transpose {
+    // ?
     public int[][] transpose(int[][] matrix) {
         int row = matrix.length;
         int length = matrix[0].length;
