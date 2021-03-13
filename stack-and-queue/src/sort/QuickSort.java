@@ -16,9 +16,12 @@ public class QuickSort {
         }
         if(right-left<=1){
             if(array[right]<array[left]){
-                int temp = array[left];
-                array[left] = array[right];
-                array[right] = temp;
+//                int temp = array[left];
+//                array[left] = array[right];
+//                array[right] = temp;
+                array[left] = array[left]^array[right];
+                array[right] = array[right]^array[left];
+                array[left] = array[left]^array[right];
             }
             return;
         }

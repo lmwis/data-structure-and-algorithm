@@ -39,6 +39,9 @@ public class PostOrderTraversal {
                 temp = stack.pop().left;
             }
         }
+
+        // 前 右 左
+
         // 逆序
         Collections.reverse(res);
         return res;
