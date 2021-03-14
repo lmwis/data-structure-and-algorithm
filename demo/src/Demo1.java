@@ -32,6 +32,7 @@ public class Demo1 {
 
     }
 
+
     public ListNode method(ListNode list1, ListNode list2) {
         ListNode node = new ListNode(0);
         ListNode temp = node;
