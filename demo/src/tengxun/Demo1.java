@@ -1,4 +1,4 @@
-import java.util.LinkedList;
+package tengxun;
 
 /**
  * @Description: 将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。
@@ -48,11 +48,11 @@ public class Demo1 {
                 break;
             }
             if (node1.value > node2.value) {
-//                temp.next = new ListNode(node2.value);
+//                temp.next = new tengxun.ListNode(node2.value);
                 temp.next =  node2;
                 node2 = node2.next;
             } else {
-//                temp.next = new ListNode(node1.value);
+//                temp.next = new tengxun.ListNode(node1.value);
                 temp.next =  node1;
                 node1 = node1.next;
             }

@@ -1,3 +1,5 @@
+package tengxun;
+
 /**
  * @Description:
  *  一个字符串s，包含一个或者多个*，把*全部移动到最左边，打印出来
