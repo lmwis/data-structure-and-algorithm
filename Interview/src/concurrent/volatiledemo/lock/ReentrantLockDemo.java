@@ -14,17 +14,16 @@ public class ReentrantLockDemo {
 
     public static void main(String[] args) {
 
-        new ReentrantLockDemo().doBussiness();
+        new ReentrantLockDemo().doBusiness();
 
     }
 
-    private void doBussiness() {
+    private void doBusiness() {
         lock.lock();;
 
         try {
             // do things
-        }catch (InterruptedException e){
-            e.printStackTrace();
+
         }finally {
             lock.unlock();
         }
