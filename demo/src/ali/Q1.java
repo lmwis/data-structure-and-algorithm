@@ -1,10 +1,10 @@
-package tengxun;
+package ali;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- * @Description:
+ * @Description: 3.15 阿里笔试第一题
  * @Author: lmwis
  * @Date 2021-03-15 19:13
  * @Version 1.0
