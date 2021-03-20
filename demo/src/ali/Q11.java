@@ -1,4 +1,9 @@
 //评测题目: 
+
+package ali;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.ReentrantLock;
+
 /**题目1：有一个仓库，容量为N。有若干生产者，将生产的产品存入到仓库，除非仓库已满。
  又有若干消费者，从仓库中取出产品消费，除非仓库已空。请写一段程序让这个模式正常运转
 
@@ -6,7 +11,6 @@
  要求，
  1.在预先未知的某个旋转轴上进行旋转一次，如（1、2、4、5、6、9可能成为4、5、6、9、1、2）；
  2.给你一个搜索的目标值。如果在数组中找到，返回它的索引值，否则返回- 1
-
  题目3：删除子字符串的最大得分
  难度中等8收藏分享切换为英文接收动态反馈
  给你一个字符串 s 和两个整数 x 和 y 。你可以执行下面两种操作任意次。
@@ -27,11 +31,11 @@
  总得分为 5 + 4 + 5 + 5 = 19 。*/
 
 // 题目1
-public class Main{
+public class Q11{
 
     public static void main(String[] args){
 
-        Main m = new Main();
+        Q11 m = new Q11();
         m.doBusiness();
 
 
@@ -43,16 +47,24 @@ public class Main{
         for(int i=0;i<10;i++){
             Producer p = new Producer();
             new Thread(()->{
-                p.doProduce();
-                Thread.sleep(10);
+                p.doProduce(store);
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }).start();
 
         }
         for(int i=0;i<10;i++){
             Custmer c = new Custmer();
             new Thread(()->{
-                c.doCustme();
-                Thread.sleep(10);
+                c.doCustme(store);
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }).start();
         }
     }
@@ -73,23 +85,24 @@ public class Main{
 
     class Store{
         // 容量
-        private AutomicInteger current = new AutomicInteger(n);
-        private ReertenLock lock =
+        private AtomicInteger current;
+        private ReentrantLock lock = new ReentrantLock();
         private int n;
 
 
         public Store (int n){
             this.n = n;
+            current = new AtomicInteger(n);
         }
         // 消费
         public void get(){
             lock.lock();
             do{
-                if(current>0){
-                    n.decrease();
+                if(current.get()>n){
+                    n = current.incrementAndGet();
                     break;
                 }
-            }while(current<=0);
+            }while(current.get()<=0);
 
             lock.unlock();
 
@@ -98,11 +111,11 @@ public class Main{
         public void put(){
             lock.lock();
             do{
-                if(current<=n){
-                    n.decrease();
-                    break
+                if(current.get()<=n){
+                    n = current.decrementAndGet();
+                    break;
                 }
-            }while(current>n);
+            }while(current.get()>n);
 
             lock.unlock();
         }
@@ -111,7 +124,7 @@ public class Main{
 
 // 题目二
 
-public class Q2{
+class Q12{
     public static void main(String[] args){
 
 
@@ -148,7 +161,7 @@ public class Q2{
 
 // 题目三
 
-public class Q3{
+class Q13{
     public static void main(String[] args){
 
 
@@ -167,14 +180,14 @@ public class Q3{
     public int doMax(String s,int x,int y,String sx,String sy){
         int sum=0;
         while(true){
-            if(s.indexOf(sx)){
-                String s1 = s.subString(0,s.indexOf(sx));
-                String s2 = s.subString(s.indexOf(sx)+2,s.length());
+            if(s.indexOf(sx)!=-1){
+                String s1 = s.substring(0,s.indexOf(sx));
+                String s2 = s.substring(s.indexOf(sx)+2,s.length());
                 s = s1+s2;
                 sum+=x;
-            }else if(s.indexOf(sy)){
-                String s1 = s.subString(0,s.indexOf(sy));
-                String s2 = s.subString(s.indexOf(sy)+2,s.length());
+            }else if(s.indexOf(sy)!=-1){
+                String s1 = s.substring(0,s.indexOf(sy));
+                String s2 = s.substring(s.indexOf(sy)+2,s.length());
                 s = s1+s2;
                 sum+=y;
             }else{
