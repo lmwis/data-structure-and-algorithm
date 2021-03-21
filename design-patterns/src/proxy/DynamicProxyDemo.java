@@ -3,6 +3,7 @@ package proxy;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.Objects;
 
 /**
  * @Description: 动态代理的代理类是在程序运行时创建
@@ -27,26 +28,33 @@ public class DynamicProxyDemo {
 //        studentProxy.cleanClass();
         System.out.println(studentProxy.getClass());
 
-//        Person badStudent = new BadStudent("大A");
-//        StudentInvocationHandler badStudentInvocationHandler = new StudentInvocationHandler<Person>(badStudent);
-//        Person badPerson = (Person)Proxy.newProxyInstance(Person.class.getClassLoader(),new Class<?>[]{Person.class},badStudentInvocationHandler);
-//        badPerson.giveMask();
-//        badPerson.cleanClass();
-//        System.out.println(badPerson.getClass());
-//        Person badPerson2 = (Person)Proxy.newProxyInstance(Person.class.getClassLoader(),new Class<?>[]{Person.class},badStudentInvocationHandler);
-//        badPerson2.giveMask();
-//        badPerson2.cleanClass();
-//        System.out.println(badPerson2.getClass());
-        for(int i=0;i<10;i++){
+
+
+        for(int i=0;i<100;i++){
             int finalI = i;
             new Thread(()->{
-                System.out.println("====");
+//                System.out.println("====");
+//                Person badStudent = new BadStudent("大A");
+//                StudentInvocationHandler badStudentInvocationHandler = new StudentInvocationHandler<Person>(badStudent);
                 System.out.println("第"+ finalI +"次创建");
-                Person proxy = (Person)Proxy.newProxyInstance(Person.class.getClassLoader(),new Class<?>[]{Person.class},studentInvocationHandler);
-                System.out.println(proxy.getClass());
-                System.out.println("====");
+//                Person proxy = (Person)Proxy.newProxyInstance(Person.class.getClassLoader(),new Class<?>[]{Person.class},badStudentInvocationHandler);
+//                System.out.println(proxy.getClass());
+//                System.out.println("====");
+                Person badStudent = new BadStudent("大A");
+                Person student = new Student("大A");
+                StudentInvocationHandler badStudentInvocationHandler = new StudentInvocationHandler<Person>(badStudent);
+                StudentInvocationHandler2 badStudentInvocationHandler2 = new StudentInvocationHandler2<Person>(student);
+                Person badPerson = (Person)Proxy.newProxyInstance(Person.class.getClassLoader(),new Class<?>[]{Person.class},badStudentInvocationHandler);
+                badPerson.giveMask();
+                badPerson.cleanClass();
+                System.out.println(badPerson.getClass());
+                Person badPerson2 = (Person)Proxy.newProxyInstance(Person.class.getClassLoader(),new Class<?>[]{Person.class},badStudentInvocationHandler2);
+                badPerson2.giveMask();
+                badPerson2.cleanClass();
+                System.out.println(badPerson2.getClass());
             }).start();
         }
+//        Objects.requireNonNull(null);
     }
 
     interface Person{
@@ -108,6 +116,30 @@ public class DynamicProxyDemo {
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
             System.out.println("代理执行"+method.getName()+"方法");
+            Object result = method.invoke(target,args); // 执行原方法
+//            System.out.println("我不执行被代理类的方法");
+//            return null;
+            return result;
+        }
+    }
+    class StudentInvocationHandler2<T> implements InvocationHandler{
+        T target;
+
+        public StudentInvocationHandler2(T target) {
+            this.target = target;
+        }
+
+        /**
+         * 代理类所有执行的方法都会被替换为这个invoke方法
+         * @param proxy
+         * @param method
+         * @param args
+         * @return
+         * @throws Throwable
+         */
+        @Override
+        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+            System.out.println("代理2执行"+method.getName()+"方法");
             Object result = method.invoke(target,args); // 执行原方法
 //            System.out.println("我不执行被代理类的方法");
 //            return null;
