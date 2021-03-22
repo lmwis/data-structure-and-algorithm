@@ -3,7 +3,6 @@ package proxy;
 import sun.misc.ProxyGenerator;
 
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 
 /**
