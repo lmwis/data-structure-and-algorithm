@@ -7,4 +7,9 @@ package ali;
  * @Version 1.0
  */
 public class Q1 {
+    public static void main(String[] args) {
+        Integer a = 300;
+        Integer b = 300;
+        System.out.println(a==b);
+    }
 }
