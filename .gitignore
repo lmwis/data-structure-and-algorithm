@@ -2,3 +2,4 @@
 out
 *.iml
 pingcap/target
+target
