@@ -1,9 +1,6 @@
 package easy;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * @Description: TODO
@@ -16,18 +13,11 @@ public class PrintNumbers {
         Arrays.stream(new PrintNumbers().printNumbers(2)).forEach(System.out::println);
     }
     public int[] printNumbers(int n) {
-        List<Integer> res = new ArrayList<>();
-        for(int i=1;i<=n;i++){
-            int max = 10;
-            for(int j=2;j<=i;j++){
-                max *= 10;
-            }
-            for(int k=1;k<max;k++){
-                if(!res.contains(k)){
-                    res.add(k);
-                }
-            }
+        int max = (int)Math.pow(10,n)-1;
+        int[] res = new int[max];
+        for(int k=0;k<max;k++){
+            res[k] = k+1;
         }
-        return res.stream().mapToInt(Integer::intValue).toArray();
+        return res;
     }
 }
