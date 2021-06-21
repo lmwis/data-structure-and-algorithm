@@ -92,6 +92,7 @@ public class ThroneInheritanceRight {
         memberStatusMap.put(name,1);
     }
 
+
     /**
      * 说白了就是前序遍历
      * @return
