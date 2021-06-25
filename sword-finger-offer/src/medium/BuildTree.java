@@ -27,6 +27,7 @@ public class BuildTree {
         if(left>right){ // 递归终止
             return null;
         }
+
         TreeNode node = new TreeNode(preorder[root]); // 建立根结点
         int i  = dic.get(preorder[root]); // 根结点在中序遍历的位置，该位置左边为左子树，右边为右子树
         node.left = recur(root+1,left,i-1); // 左子树递归
