@@ -32,6 +32,7 @@ public class MergeTwoLists {
             }
             temp = temp.getNext();
         }
+
         temp.setNext(l2==null?l1:l2);
         return root.getNext();
     }
