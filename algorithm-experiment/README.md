@@ -52,3 +52,13 @@
 # 秋招
 - 阿里实习转正
 - thoughtworks 
+- 美图
+- 百度 已笔试
+- 腾讯 微信支付 一面
+- TCL 待投递
+- shoppe 待投递
+- B站 
+- 亚马逊
+- pingcap
+- 字节
+- BOSS直聘
