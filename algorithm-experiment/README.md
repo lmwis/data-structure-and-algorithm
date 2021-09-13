@@ -50,15 +50,17 @@
 - 猿辅导
 - 好未来 笔试挂
 # 秋招
-- 阿里实习转正
-- thoughtworks 
+- 阿里实习转正 意向
+- thoughtworks 笔试
 - 美图
 - 百度 已笔试
 - 腾讯 微信支付 一面
-- TCL 待投递
-- shoppe 待投递
+- TCL 
+- shoppe 
 - B站 
-- 亚马逊
-- pingcap
+- 亚马逊 
+- pingcap 
 - 字节
 - BOSS直聘
+- shein 笔试
+- 
