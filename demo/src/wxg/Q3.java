@@ -25,10 +25,11 @@ public class Q3 {
             int x = a1*a2*a3*a4*a5;
             arr[i] = x;
         }
-        Set
+//        Set
         for (int i : arr) {
 
         }
+        return 0;
     }
 
     /**
