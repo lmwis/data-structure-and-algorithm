@@ -27,7 +27,7 @@ public class Q2 {
         // 去重完 nArr
         int count=0;
         for (int m = 1; m <=n ; m++) {
-            count+=getCount(nArr,m);
+//            count+=getCount(nArr,m);
         }
     }
     List<List<Integer>> total = new ArrayList<>();
@@ -35,5 +35,6 @@ public class Q2 {
          if (m==0){
 
          }
+         return 0;
     }
 }
