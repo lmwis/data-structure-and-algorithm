@@ -15,8 +15,6 @@ public class Q1 {
      * ---  ------   --
      *  ------ -------
      * -      -       -
-     * @param d1
-     * @param d2
      * @return
      */
 //    public static boolean isAfter(int[] d1,int [] d2){
