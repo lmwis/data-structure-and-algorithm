@@ -8,6 +8,7 @@ import data.structure.ListNode;
  * @Data: 2021/12/13 5:46 下午
  * @Version: 1.0
  */
+
 public class GetIntersectionNode {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         ListNode nodeA = headA;
